@@ -1,0 +1,128 @@
+[
+  {
+    "file": "python.svg",
+    "project": "Devicon",
+    "license": "MIT",
+    "ref": "7330accdbc47e2dc0c19789a48533c4a3c50fe58",
+    "source": "https://raw.githubusercontent.com/devicons/devicon/7330accdbc47e2dc0c19789a48533c4a3c50fe58/icons/python/python-original.svg",
+    "repository": "https://github.com/devicons/devicon"
+  },
+  {
+    "file": "javascript.svg",
+    "project": "Devicon",
+    "license": "MIT",
+    "ref": "7330accdbc47e2dc0c19789a48533c4a3c50fe58",
+    "source": "https://raw.githubusercontent.com/devicons/devicon/7330accdbc47e2dc0c19789a48533c4a3c50fe58/icons/javascript/javascript-original.svg",
+    "repository": "https://github.com/devicons/devicon"
+  },
+  {
+    "file": "react.svg",
+    "project": "Devicon",
+    "license": "MIT",
+    "ref": "7330accdbc47e2dc0c19789a48533c4a3c50fe58",
+    "source": "https://raw.githubusercontent.com/devicons/devicon/7330accdbc47e2dc0c19789a48533c4a3c50fe58/icons/react/react-original.svg",
+    "repository": "https://github.com/devicons/devicon"
+  },
+  {
+    "file": "html5.svg",
+    "project": "Devicon",
+    "license": "MIT",
+    "ref": "7330accdbc47e2dc0c19789a48533c4a3c50fe58",
+    "source": "https://raw.githubusercontent.com/devicons/devicon/7330accdbc47e2dc0c19789a48533c4a3c50fe58/icons/html5/html5-original.svg",
+    "repository": "https://github.com/devicons/devicon"
+  },
+  {
+    "file": "css3.svg",
+    "project": "Devicon",
+    "license": "MIT",
+    "ref": "7330accdbc47e2dc0c19789a48533c4a3c50fe58",
+    "source": "https://raw.githubusercontent.com/devicons/devicon/7330accdbc47e2dc0c19789a48533c4a3c50fe58/icons/css3/css3-original.svg",
+    "repository": "https://github.com/devicons/devicon"
+  },
+  {
+    "file": "php.svg",
+    "project": "Devicon",
+    "license": "MIT",
+    "ref": "7330accdbc47e2dc0c19789a48533c4a3c50fe58",
+    "source": "https://raw.githubusercontent.com/devicons/devicon/7330accdbc47e2dc0c19789a48533c4a3c50fe58/icons/php/php-original.svg",
+    "repository": "https://github.com/devicons/devicon"
+  },
+  {
+    "file": "mysql.svg",
+    "project": "Devicon",
+    "license": "MIT",
+    "ref": "7330accdbc47e2dc0c19789a48533c4a3c50fe58",
+    "source": "https://raw.githubusercontent.com/devicons/devicon/7330accdbc47e2dc0c19789a48533c4a3c50fe58/icons/mysql/mysql-original.svg",
+    "repository": "https://github.com/devicons/devicon"
+  },
+  {
+    "file": "postgresql.svg",
+    "project": "Devicon",
+    "license": "MIT",
+    "ref": "7330accdbc47e2dc0c19789a48533c4a3c50fe58",
+    "source": "https://raw.githubusercontent.com/devicons/devicon/7330accdbc47e2dc0c19789a48533c4a3c50fe58/icons/postgresql/postgresql-original.svg",
+    "repository": "https://github.com/devicons/devicon"
+  },
+  {
+    "file": "git.svg",
+    "project": "Devicon",
+    "license": "MIT",
+    "ref": "7330accdbc47e2dc0c19789a48533c4a3c50fe58",
+    "source": "https://raw.githubusercontent.com/devicons/devicon/7330accdbc47e2dc0c19789a48533c4a3c50fe58/icons/git/git-original.svg",
+    "repository": "https://github.com/devicons/devicon"
+  },
+  {
+    "file": "cplusplus.svg",
+    "project": "Devicon",
+    "license": "MIT",
+    "ref": "7330accdbc47e2dc0c19789a48533c4a3c50fe58",
+    "source": "https://raw.githubusercontent.com/devicons/devicon/7330accdbc47e2dc0c19789a48533c4a3c50fe58/icons/cplusplus/cplusplus-original.svg",
+    "repository": "https://github.com/devicons/devicon"
+  },
+  {
+    "file": "vscode.svg",
+    "project": "Devicon",
+    "license": "MIT",
+    "ref": "7330accdbc47e2dc0c19789a48533c4a3c50fe58",
+    "source": "https://raw.githubusercontent.com/devicons/devicon/7330accdbc47e2dc0c19789a48533c4a3c50fe58/icons/vscode/vscode-original.svg",
+    "repository": "https://github.com/devicons/devicon"
+  },
+  {
+    "file": "excel.svg",
+    "project": "Simple Icons",
+    "license": "CC0-1.0 for collection; Microsoft custom asset license also recorded in brand.license",
+    "version": "11.15.0",
+    "ref": "0af835e2949a9222965522780e5e0810d3c53382",
+    "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/0af835e2949a9222965522780e5e0810d3c53382/icons/microsoftexcel.svg",
+    "repository": "https://github.com/simple-icons/simple-icons",
+    "brand": {
+      "title": "Microsoft Excel",
+      "hex": "217346",
+      "source": "https://developer.microsoft.com/en-us/fluentui#/styles/web/colors/products",
+      "guidelines": "https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks",
+      "license": {
+        "type": "custom",
+        "url": "https://aka.ms/fluentui-assets-license"
+      }
+    }
+  },
+  {
+    "file": "powerbi.svg",
+    "project": "Simple Icons",
+    "license": "CC0-1.0 for collection; Microsoft custom asset license also recorded in brand.license",
+    "version": "11.15.0",
+    "ref": "0af835e2949a9222965522780e5e0810d3c53382",
+    "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/0af835e2949a9222965522780e5e0810d3c53382/icons/powerbi.svg",
+    "repository": "https://github.com/simple-icons/simple-icons",
+    "brand": {
+      "title": "Power BI",
+      "hex": "F2C811",
+      "source": "https://docs.microsoft.com/en-us/power-platform/guidance/icons",
+      "guidelines": "https://docs.microsoft.com/en-us/power-platform/guidance/icons",
+      "license": {
+        "type": "custom",
+        "url": "https://docs.microsoft.com/en-us/power-platform/guidance/icons"
+      }
+    }
+  }
+]
