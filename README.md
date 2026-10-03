@@ -39,7 +39,7 @@ Abrir http://127.0.0.1:8766/ en el navegador.
 - `DESIGN_BRIEF.md`: prompt de diseño mejorado y criterios de aceptación.
 - `assets/`: retrato, documentos, iconos y bibliotecas locales.
 
-El CV público no incluye DNI ni dirección. El número de contacto se usa en los enlaces de WhatsApp. Los documentos académicos internos no forman parte del repositorio. Las imágenes de proyectos son esquemas ilustrativos; las miniaturas de certificados proceden de sus documentos reales.
+El CV descargable corresponde al archivo actualizado `BECKHAM GONZALES_CV.pdf` proporcionado por el titular, publicado sin modificaciones. El número de contacto se usa en los enlaces de WhatsApp. Los documentos académicos internos no forman parte del repositorio. Las imágenes de proyectos son esquemas ilustrativos; las miniaturas de certificados proceden de sus documentos reales.
 
 ## Publicación
 
