@@ -9,8 +9,8 @@
     excel:`<svg viewBox="0 0 440 245" aria-hidden="true"><rect x="28" y="35" width="170" height="151" rx="5" fill="#101a12" stroke="#69885a"/><rect x="239" y="52" width="170" height="151" rx="5" fill="#14231a" stroke="#a6d384"/><path d="M28 65H198M28 95H198M28 125H198M28 155H198M75 65V185M132 65V185M239 82H409M239 112H409M239 142H409M239 172H409M286 82V203M344 82V203" stroke="#a3c78638"/><rect x="133" y="96" width="64" height="28" fill="#cefc8338"/><rect x="345" y="113" width="63" height="28" fill="#cefc8355"/><path d="M174 111C229 91 211 133 263 127" fill="none" stroke="#cefc83" stroke-width="2"/><path d="M254 121L264 127L254 134" stroke="#cefc83" stroke-width="2" fill="none"/><text x="42" y="54" class="art-label">ARCHIVO A</text><text x="253" y="72" class="art-label">ARCHIVO B</text><text x="63" y="217" class="art-label">COMPARAR → ENCONTRAR → EXPORTAR</text></svg>`,
     code:`<div class="art-window" aria-hidden="true"><div class="window-dots"><i></i><i></i><i></i></div><code><em>const</em> construir = {\n  propósito: <em>'educación'</em>,\n  método: <em>'colaboración'</em>,\n  siguientePaso: <em>'aprender'</em>\n};</code></div>`
   };
-  document.querySelector('#project-grid').innerHTML = projects.map((p,i)=>`<article class="project-card reveal"><div class="project-art ${p.art==='bridge'?'art-cpp':''}"><span class="project-number">0${i+1} / PROYECTO</span>${arts[p.art]}<span class="project-category">${escape(p.category)} · Esquema ilustrativo</span></div><div class="project-info"><div class="project-title-row"><h3>${escape(p.title)}</h3><button class="project-open" data-project="${p.id}" aria-label="Ver detalles: ${escape(p.label)}">↗</button></div><p>${escape(p.description)}</p>${tags(p.tags)}</div></article>`).join('');
-  document.querySelector('#tools-grid').innerHTML = tools.map(t=>`<article class="tool-card" data-group="${t.group}"><img src="assets/icons/${t.icon}.svg" alt="" width="39" height="39" loading="lazy" ${t.icon==='powerbi'?'class="powerbi-icon"':t.icon==='excel'?'class="excel-icon"':''}><h3>${escape(t.name)}</h3><p>${escape(t.label)}</p></article>`).join('');
+  document.querySelector('#project-grid').innerHTML = projects.map((p,i)=>`<article class="project-card reveal ${i===0?'project-featured':''}"><div class="project-art ${p.art==='bridge'?'art-cpp':''}" data-tilt><span class="project-number">0${i+1} / ${i===0?'PROYECTO DESTACADO':'PROYECTO'}</span>${arts[p.art]}<span class="project-category">${escape(p.category)} · Esquema ilustrativo</span></div><div class="project-info">${i===0?'<span class="featured-kicker"><i aria-hidden="true"></i> DATOS QUE SE CONVIERTEN EN DECISIONES</span>':''}<div class="project-title-row"><h3>${escape(p.title)}</h3></div><p>${escape(p.description)}</p>${tags(p.tags)}<button class="project-open" data-project="${p.id}" aria-label="Ver detalles: ${escape(p.label)}">Ver proyecto <span aria-hidden="true">↗</span></button></div></article>`).join('');
+  document.querySelector('#tools-grid').innerHTML = tools.map(t=>`<article class="tool-card" data-group="${t.group}" data-tilt><img src="assets/icons/${t.icon}.svg" alt="" width="39" height="39" loading="lazy" ${t.icon==='powerbi'?'class="powerbi-icon"':t.icon==='excel'?'class="excel-icon"':''}><h3>${escape(t.name)}</h3><p>${escape(t.label)}</p></article>`).join('');
   document.querySelector('#certificate-grid').innerHTML = certificates.map(c=>`<article class="certificate-card reveal"><div class="certificate-thumb"><img src="assets/certificados/${c.file}.webp" alt="Vista del certificado de ${escape(c.title)} a nombre de Beckham Luis Gonzales Morales" loading="lazy" width="640" height="450"></div><div class="certificate-content"><span class="certificate-issuer">${escape(c.issuer)}</span><h3>${escape(c.title)}</h3><p>${escape(c.date)} · ${escape(c.hours)}<br>${escape(c.type)}</p><a href="assets/certificados/${c.file}.pdf" target="_blank" rel="noopener noreferrer" aria-label="Ver certificado de ${escape(c.title)} en PDF, abre en otra pestaña">Ver certificado <span>↗</span></a></div></article>`).join('');
 
   const menu = document.querySelector('.menu-toggle');
@@ -20,10 +20,32 @@
   nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
   document.addEventListener('keydown',event=>{if(event.key==='Escape'&&nav.classList.contains('open')){closeMenu();menu.focus();}});
   document.addEventListener('click',event=>{if(!event.target.closest('.header'))closeMenu();});
+  const toolsGrid=document.querySelector('#tools-grid');
+  const toolCards=Array.from(toolsGrid.children);
+  const toolStatus=document.createElement('span');
+  toolStatus.className='sr-only';toolStatus.setAttribute('role','status');
+  document.querySelector('.tool-filters').after(toolStatus);
+  let filterAnimations=[];
   document.querySelectorAll('[data-filter]').forEach(button=>button.addEventListener('click',()=>{
+    if(button.getAttribute('aria-pressed')==='true')return;
+    filterAnimations.forEach(animation=>animation.cancel());filterAnimations=[];
+    const before=new Map(toolCards.filter(card=>!card.hidden).map(card=>[card,card.getBoundingClientRect()]));
+    const oldHeight=toolsGrid.offsetHeight;
     document.querySelectorAll('[data-filter]').forEach(b=>{b.classList.toggle('active',b===button);b.setAttribute('aria-pressed',String(b===button));});
-    document.querySelectorAll('.tool-card').forEach(card=>{card.hidden=button.dataset.filter!=='all'&&card.dataset.group!==button.dataset.filter;});
-    window.ScrollTrigger?.refresh();
+    toolCards.forEach(card=>{card.hidden=button.dataset.filter!=='all'&&card.dataset.group!==button.dataset.filter;});
+    const visible=toolCards.filter(card=>!card.hidden);
+    toolStatus.textContent=`${visible.length} herramientas: ${button.textContent}.`;
+    if(!motionPaused){
+      const duration=420,easing='cubic-bezier(.22,1,.36,1)';
+      const newHeight=toolsGrid.offsetHeight;
+      visible.forEach((card,i)=>{
+        const to=card.getBoundingClientRect(),from=before.get(card);
+        const frames=from?[{transform:`translate(${from.left-to.left}px,${from.top-to.top}px)`},{transform:'translate(0,0)'}]:[{opacity:0,transform:'translateY(15px) scale(.97)'},{opacity:1,transform:'translateY(0) scale(1)'}];
+        filterAnimations.push(card.animate(frames,{duration,easing,delay:from?0:i*22}));
+      });
+      filterAnimations.push(toolsGrid.animate([{height:oldHeight+'px'},{height:newHeight+'px'}],{duration,easing}));
+      Promise.allSettled(filterAnimations.map(animation=>animation.finished)).then(()=>window.ScrollTrigger?.refresh());
+    }else window.ScrollTrigger?.refresh();
   }));
   const dialog=document.querySelector('#project-dialog');
   let previousFocus;
@@ -31,6 +53,7 @@
     const p=projects.find(p=>p.id===button.dataset.project);previousFocus=button;
     document.querySelector('#dialog-content').innerHTML=`<p class="dialog-kicker">${escape(p.label)}</p><h2 id="dialog-title">${escape(p.title)}</h2>${tags(p.tags)}<h3>La pregunta</h3><p>${escape(p.challenge)}</p><h3>Cómo lo abordé</h3><p>${escape(p.approach)}</p><h3>Lo que puse en práctica</h3><ul>${p.learning.map(item=>`<li>${escape(item)}</li>`).join('')}</ul><p class="dialog-note">${escape(p.note)}</p><a class="button primary" href="mailto:beckam.luis.01@gmail.com?subject=${encodeURIComponent('Conversemos sobre '+p.label)}">Conversemos sobre este proyecto <span>↗</span></a>`;
     dialog.showModal();document.body.classList.add('modal-open');
+    if(!motionPaused)dialog.animate([{opacity:0,transform:'translateY(18px) scale(.98)'},{opacity:1,transform:'translateY(0) scale(1)'}],{duration:280,easing:'cubic-bezier(.22,1,.36,1)'});
   }));
   document.querySelector('.dialog-close').addEventListener('click',()=>dialog.close());
   dialog.addEventListener('click',event=>{const r=dialog.getBoundingClientRect();if(event.target===dialog&&(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom))dialog.close();});
@@ -40,7 +63,7 @@
   const motionButton=document.querySelector('#motion-toggle');
   let motionPaused=reduceMotion.matches;
   let animations;
-  const refreshProgress=()=>{const max=document.documentElement.scrollHeight-innerHeight;document.querySelector('.scroll-progress').style.width=(max>0?scrollY/max*100:0)+'%';};
+  const refreshProgress=()=>{const max=document.documentElement.scrollHeight-innerHeight;document.querySelector('.scroll-progress').style.width=(max>0?scrollY/max*100:0)+'%';document.querySelector('.header').classList.toggle('is-scrolled',scrollY>36);};
   let framePending=false;
   addEventListener('scroll',()=>{if(!framePending){framePending=true;requestAnimationFrame(()=>{refreshProgress();framePending=false;});}},{passive:true});
   addEventListener('resize',refreshProgress);
@@ -48,19 +71,47 @@
     if(!window.gsap||!window.ScrollTrigger||motionPaused)return;
     gsap.registerPlugin(ScrollTrigger);
     animations=gsap.context(()=>{
-      gsap.from('.hero-copy > *',{y:24,opacity:0,duration:.85,stagger:.11,ease:'power3.out',clearProps:'all'});
-      gsap.from('.hero-art',{y:35,opacity:0,rotate:4,duration:1.2,ease:'power3.out',clearProps:'all'});
-      gsap.utils.toArray('.section h2,.about-copy,.facts,.project-card,.certificate-card,.timeline article').forEach(el=>{
-        gsap.from(el,{y:35,opacity:0,duration:.7,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 93%',once:true},clearProps:'all'});
+      gsap.from('.hero-copy > :not(h1)',{y:16,opacity:0,duration:.7,stagger:.07,ease:'power3.out',clearProps:'all'});
+      gsap.from('.hero-line',{y:26,opacity:0,duration:.85,stagger:.1,ease:'power3.out',clearProps:'all'});
+      gsap.from('.hero-art',{y:22,opacity:0,rotate:2,duration:1.1,ease:'power3.out',clearProps:'all'});
+      gsap.utils.toArray('.section h2,.about-copy,.facts,.contact-row').forEach(el=>{
+        gsap.from(el,{y:24,opacity:0,duration:.7,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 92%',once:true},clearProps:'all'});
       });
+      ['.project-card','.certificate-card','.tool-card','.timeline article','.contact-card'].forEach(selector=>{
+        ScrollTrigger.batch(selector,{start:'top 94%',once:true,onEnter:batch=>{if(!motionPaused)animations?.add(()=>gsap.from(batch,{y:26,opacity:0,stagger:.085,duration:.7,ease:'power3.out',clearProps:'opacity,transform'}));}});
+      });
+      if(matchMedia('(min-width: 801px) and (pointer: fine)').matches){
+        gsap.to('.portrait-card',{y:30,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:1}});
+      }
       gsap.to('.orbit-a',{rotation:30,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:1}});
       gsap.to('.orbit-b',{rotation:-15,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:1}});
     });
   }
-  function setMotion(paused){motionPaused=paused;document.documentElement.classList.toggle('motion-off',paused);motionButton.setAttribute('aria-pressed',String(paused));motionButton.textContent=paused?'Activar animaciones':'Pausar animaciones';if(paused){animations?.revert();animations=null;}else animate();}
+  function setMotion(paused){motionPaused=paused;document.documentElement.classList.toggle('motion-off',paused);motionButton.setAttribute('aria-pressed',String(paused));motionButton.textContent=paused?'Activar animaciones':'Pausar animaciones';if(paused){animations?.revert();animations=null;filterAnimations.forEach(animation=>animation.cancel());document.querySelectorAll('[data-tilt]').forEach(resetTilt);}else animate();}
   motionButton.addEventListener('click',()=>setMotion(!motionPaused));
   reduceMotion.addEventListener('change',event=>setMotion(event.matches));
   setMotion(motionPaused);refreshProgress();
+
+  const finePointer=matchMedia('(hover: hover) and (pointer: fine)');
+  function resetTilt(card){card.style.removeProperty('--tilt-x');card.style.removeProperty('--tilt-y');card.classList.remove('tilt-active');}
+  document.querySelectorAll('[data-tilt]').forEach(card=>{
+    let pointerFrame=0;
+    card.addEventListener('pointermove',event=>{
+      if(motionPaused||!finePointer.matches||pointerFrame)return;
+      const x=event.clientX,y=event.clientY;
+      pointerFrame=requestAnimationFrame(()=>{
+        pointerFrame=0;if(motionPaused)return;
+        const rect=card.getBoundingClientRect();
+        const px=Math.max(0,Math.min(1,(x-rect.left)/rect.width)),py=Math.max(0,Math.min(1,(y-rect.top)/rect.height));
+        card.style.setProperty('--tilt-x',((.5-py)*4).toFixed(2)+'deg');
+        card.style.setProperty('--tilt-y',((px-.5)*4).toFixed(2)+'deg');
+        card.style.setProperty('--spot-x',(px*100).toFixed(1)+'%');card.style.setProperty('--spot-y',(py*100).toFixed(1)+'%');
+        card.classList.add('tilt-active');
+      });
+    });
+    const clear=()=>{cancelAnimationFrame(pointerFrame);pointerFrame=0;resetTilt(card);};
+    card.addEventListener('pointerleave',clear);card.addEventListener('pointercancel',clear);
+  });
 
   const themeButton=document.querySelector('#theme-toggle');
   const root=document.documentElement;
