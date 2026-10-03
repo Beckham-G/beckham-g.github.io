@@ -8,7 +8,7 @@ Portafolio de Computación Científica, análisis de datos y desarrollo web.
 - Cuatro proyectos y experiencias: Penales IA, maqueta 3D del Puente de los Suspiros, comparador de Excel y voluntariado Coded Perú.
 - Herramientas con iconos y filtros por área.
 - Cuatro certificados en PDF y CV público descargable.
-- Modos claro y oscuro con transición circular y preferencia guardada.
+- Inicio en modo oscuro y cambio a modo claro con transición circular.
 - Navegación adaptable, contacto por correo, LinkedIn y WhatsApp.
 - Animaciones con opción de pausa y compatibilidad con movimiento reducido.
 

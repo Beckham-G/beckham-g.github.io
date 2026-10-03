@@ -70,7 +70,6 @@
     themeButton.setAttribute('aria-label',theme==='dark'?'Activar modo claro':'Activar modo oscuro');
     themeButton.setAttribute('aria-pressed',String(theme==='light'));
     document.querySelector('meta[name="theme-color"]').content=theme==='dark'?'#101410':'#f5f6ef';
-    try{localStorage.setItem('bg-theme',theme);}catch(e){/* El tema sigue funcionando sin almacenamiento. */}
   }
   applyTheme(root.dataset.theme||'dark');
   themeButton.addEventListener('click',async()=>{
