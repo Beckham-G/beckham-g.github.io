@@ -2,6 +2,9 @@
 
 Portafolio de Computación Científica, análisis de datos y desarrollo web.
 
+Sitio público: [beckham-g.github.io](https://beckham-g.github.io/).
+Repositorio: [Beckham-G/beckham-g.github.io](https://github.com/Beckham-G/beckham-g.github.io).
+
 ## Contenido
 
 - Perfil: estudiante de octavo ciclo de Computación Científica en la UNMSM, quinto superior y becario Pronabec.
@@ -41,6 +44,8 @@ El CV público no incluye DNI ni dirección. El número de contacto se usa en lo
 ## Publicación
 
 Preparado para GitHub Pages desde la rama `main`, carpeta raíz. `.nojekyll` permite servir los archivos estáticos directamente.
+
+El repositorio se llama `beckham-g.github.io` para publicar el portafolio en la dirección principal de la cuenta `Beckham-G`.
 
 ## Versión anterior
 
