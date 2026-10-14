@@ -1,0 +1,16 @@
+/* Preserve the compact certificate cards; show all credential details in the shared preview. */
+.certificate-thumb { grid-template-rows: minmax(0, 1fr); }
+.aws-certificate { min-width: 0; }
+.aws-certificate .aws-certificate-meta { margin-block: 9px 24px; }
+#aws-badge-details[hidden] { display: none; }
+#aws-badge-details { width: 100%; margin-top: 20px; }
+.aws-official-badge { border-top: 1px solid var(--line); padding-top: 8px; }
+.aws-official-badge summary { color: var(--muted); font-size: 12px; min-height: 44px; padding-block: 12px; cursor: pointer; }
+.aws-official-badge summary:hover { color: var(--accent-text); }
+.aws-official-badge summary:focus-visible { outline: 3px solid var(--accent-text); outline-offset: 3px; border-radius: 3px; }
+.aws-badge-panel { display: grid; place-items: center; padding: 18px; background: #fff; border-radius: 6px; }
+.credly-badge-stage { width: 150px; min-height: 270px; display: grid; place-items: center; }
+.credly-badge-stage iframe { display: block; border: 0; }
+.credly-placeholder { color: #233218; font-size: 14px; line-height: 1.6; text-align: center; }
+.credly-placeholder span { color: #53634a; font-size: 12px; }
+.certificate-preview .aws-certificate-note { color: var(--muted); font-size: 11px; line-height: 1.6; margin: 12px 0 0; }

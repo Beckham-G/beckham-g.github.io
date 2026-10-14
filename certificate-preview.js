@@ -36,6 +36,8 @@
       </div>
     </div>`;
   document.body.append(dialog);
+  const officialBadge = document.querySelector('#aws-badge-details');
+  if (officialBadge) dialog.querySelector('.certificate-preview-details').append(officialBadge);
 
   const previewImage = dialog.querySelector('.certificate-preview-image');
   const pdfLink = dialog.querySelector('.certificate-preview-pdf');
@@ -78,15 +80,27 @@
     closing = false;
     dialog.querySelector('#certificate-preview-title').textContent = certificate.title;
     dialog.querySelector('.certificate-preview-issuer').textContent = certificate.issuer;
+    const isCredential = Boolean(certificate.credentialUrl);
+    dialog.querySelector('.certificate-preview-kicker').textContent = isCredential ? 'CERTIFICACIÓN AWS' : 'FORMACIÓN COMPLEMENTARIA';
+    const labels = dialog.querySelectorAll('.certificate-preview-facts dt');
+    labels[0].textContent = isCredential ? 'Emisión' : 'Fecha';
+    labels[1].textContent = isCredential ? 'Vencimiento' : 'Duración';
+    labels[2].textContent = isCredential ? 'Nivel' : 'Reconocimiento';
     dialog.querySelector('.certificate-preview-date').textContent = certificate.date;
-    dialog.querySelector('.certificate-preview-hours').textContent = certificate.hours;
+    dialog.querySelector('.certificate-preview-hours').textContent = certificate.expires || certificate.hours;
     dialog.querySelector('.certificate-preview-type').textContent = certificate.type;
     previewImage.src = `assets/certificados/${certificate.file}.webp`;
     previewImage.alt = `Certificado de ${certificate.title} a nombre de Beckham Luis Gonzales Morales`;
-    pdfLink.href = link.href;
-    pdfLink.setAttribute('aria-label', `Abrir certificado de ${certificate.title} en PDF, en otra pestaña`);
+    pdfLink.href = certificate.credentialUrl || link.href;
+    pdfLink.innerHTML = `${isCredential ? 'Verificar en Credly' : 'Abrir PDF'} <span aria-hidden="true">↗</span>`;
+    pdfLink.setAttribute('aria-label', isCredential ? `Verificar ${certificate.title} en Credly, abre en otra pestaña` : `Abrir certificado de ${certificate.title} en PDF, en otra pestaña`);
     downloadLink.href = link.href;
-    downloadLink.download = `${certificate.file}-beckham-gonzales.pdf`;
+    downloadLink.download = certificate.downloadName || `${certificate.file}-beckham-gonzales.pdf`;
+    downloadLink.innerHTML = `${isCredential ? 'Descargar certificado oficial' : 'Descargar certificado'} <span aria-hidden="true">↓</span>`;
+    if (officialBadge) {
+      officialBadge.hidden = !isCredential;
+      officialBadge.querySelector('details').open = false;
+    }
     dialog.showModal();
     document.body.classList.add('modal-open');
     animate([

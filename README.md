@@ -10,7 +10,8 @@ Repositorio: [Beckham-G/beckham-g.github.io](https://github.com/Beckham-G/beckha
 - Perfil: estudiante de octavo ciclo de Computación Científica en la UNMSM, quinto superior y becario Pronabec.
 - Cuatro proyectos y experiencias: Penales IA, maqueta 3D del Puente de los Suspiros, comparador de Excel y voluntariado Coded Perú.
 - Herramientas con iconos y filtros por área.
-- Cuatro certificados en PDF y CV público descargable.
+- AWS Certified AI Practitioner (Foundational), con insignia oficial de Credly, verificación pública y PDF original descargable.
+- Cuatro certificados de formación complementaria en PDF y CV público descargable.
 - Inicio en modo oscuro y cambio a modo claro con transición circular.
 - Navegación adaptable, contacto por correo, LinkedIn y WhatsApp.
 - Animaciones con opción de pausa y compatibilidad con movimiento reducido.
@@ -36,6 +37,8 @@ Abrir http://127.0.0.1:8766/ en el navegador.
 - `refinement.css`: diseño de la segunda edición y adaptación a pantallas.
 - `script.js`: interacción, filtros y animaciones.
 - `certificate-preview.js` y `certificate-preview.css`: vista ampliada de certificados.
+- `aws-certificate.css`: tarjeta AWS adaptable a móviles y a ambos temas.
+- `credly-badge.js`: carga diferida, una sola vez, del script oficial de Credly.
 - `DESIGN_BRIEF.md`: prompt de diseño mejorado y criterios de aceptación.
 - `assets/`: retrato, documentos, iconos y bibliotecas locales.
 
@@ -61,3 +64,14 @@ También se guardó el ZIP `Portafolio-antes-de-mejoras-2026-10-02.zip` en la ca
 - Manrope y DM Mono de Google Fonts.
 
 Los nombres y logotipos pertenecen a sus respectivos titulares. El retrato, CV y certificados identifican al titular de este portafolio.
+
+## Certificación AWS
+
+La tarjeta se encuentra en `index.html`, dentro de `#certificados`, con la misma estructura compacta de miniatura, título y enlace que los otros certificados. La miniatura procede de renderizar el PDF original; no es un rediseño. `content.js` contiene los datos completos. La vista ampliada compartida muestra titular, fechas completas, nivel, verificación y descarga; «Ver insignia oficial» despliega el código original de Credly (150 × 270), sin alterar la insignia. `script.js` añade las tarjetas de cursos sin reemplazar la tarjeta AWS estática. Si JavaScript está desactivado, se muestran enlaces directos adicionales; la verificación y el PDF no dependen de la carga de Credly.
+
+- Titular: Beckham Luis Gonzales Morales.
+- Certificación: AWS Certified AI Practitioner, nivel Foundational.
+- Emisor: Amazon Web Services (AWS).
+- Emisión: 12 de octubre de 2026. Vencimiento: 12 de octubre de 2029.
+- Credencial: https://www.credly.com/badges/082fb885-a959-4095-95b3-21c2a354bbae
+- PDF: `assets/certificados/aws-certified-ai-practitioner.pdf`, copia sin modificaciones de `AWS Certified AI Practitioner certificate.pdf` proporcionado por el titular.

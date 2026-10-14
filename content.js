@@ -21,6 +21,7 @@ window.portfolioContent = {
     {name:'Git',icon:'git',group:'workflow',label:'Control de versiones'}
   ],
   certificates:[
+    {title:'AWS Certified AI Practitioner',issuer:'Amazon Web Services (AWS)',date:'12 de octubre de 2026',expires:'12 de octubre de 2029',type:'Foundational',file:'aws-certified-ai-practitioner',credentialUrl:'https://www.credly.com/badges/082fb885-a959-4095-95b3-21c2a354bbae',downloadName:'AWS Certified AI Practitioner certificate.pdf'},
     {title:'Excel avanzado 2019',issuer:'SISTEMAS UNI',date:'Septiembre 2025',hours:'24 horas',type:'Curso aprobado',file:'excel-avanzado'},
     {title:'PostgreSQL',issuer:'LIMA EDUCA · PERÚ DIGITAL',date:'Octubre 2025',hours:'12 horas',type:'Constancia de participación',file:'postgresql'},
     {title:'MySQL',issuer:'LIMA EDUCA · PERÚ DIGITAL',date:'Octubre 2025',hours:'12 horas',type:'Constancia de participación',file:'mysql'},
