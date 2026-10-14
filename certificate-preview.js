@@ -42,6 +42,19 @@
   const previewImage = dialog.querySelector('.certificate-preview-image');
   const pdfLink = dialog.querySelector('.certificate-preview-pdf');
   const downloadLink = dialog.querySelector('.certificate-preview-download');
+  const badgePanel = officialBadge?.querySelector('.aws-badge-panel');
+  const badgeToggle = officialBadge?.querySelector('details');
+  function showBadgePanel() {
+    const showBadge = Boolean(officialBadge && !officialBadge.hidden && badgeToggle.open);
+    previewImage.hidden = showBadge;
+    if (badgePanel) badgePanel.hidden = !showBadge;
+    if (badgeToggle) badgeToggle.querySelector('summary').textContent = showBadge ? 'Volver al certificado' : 'Ver insignia oficial';
+  }
+  if (badgePanel) {
+    badgePanel.hidden = true;
+    dialog.querySelector('.certificate-preview-stage').append(badgePanel);
+    badgeToggle.addEventListener('toggle', showBadgePanel);
+  }
   let trigger = null;
   let currentAnimation = null;
   let closing = false;
@@ -100,6 +113,7 @@
     if (officialBadge) {
       officialBadge.hidden = !isCredential;
       officialBadge.querySelector('details').open = false;
+      showBadgePanel();
     }
     dialog.showModal();
     document.body.classList.add('modal-open');

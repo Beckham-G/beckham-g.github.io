@@ -67,7 +67,7 @@ Los nombres y logotipos pertenecen a sus respectivos titulares. El retrato, CV y
 
 ## Certificación AWS
 
-La tarjeta se encuentra en `index.html`, dentro de `#certificados`, con la misma estructura compacta de miniatura, título y enlace que los otros certificados. La miniatura procede de renderizar el PDF original; no es un rediseño. `content.js` contiene los datos completos. La vista ampliada compartida muestra titular, fechas completas, nivel, verificación y descarga; «Ver insignia oficial» despliega el código original de Credly (150 × 270), sin alterar la insignia. `script.js` añade las tarjetas de cursos sin reemplazar la tarjeta AWS estática. Si JavaScript está desactivado, se muestran enlaces directos adicionales; la verificación y el PDF no dependen de la carga de Credly.
+La tarjeta se encuentra en `index.html`, dentro de `#certificados`, con la misma estructura compacta de miniatura, título y enlace que los otros certificados. La miniatura procede de renderizar el PDF original; no es un rediseño. `content.js` contiene los datos completos. La vista ampliada compartida muestra titular, fechas completas, nivel, verificación y descarga; «Ver insignia oficial» alterna el panel del documento por el contenido oficial de Credly. El marco usa hasta 360 × 270 px y se adapta al ancho disponible, sin alterar la insignia, para evitar abreviar el título en escritorio. `script.js` añade las tarjetas de cursos sin reemplazar la tarjeta AWS estática. Si JavaScript está desactivado, se muestran enlaces directos adicionales; la verificación y el PDF no dependen de la carga de Credly.
 
 - Titular: Beckham Luis Gonzales Morales.
 - Certificación: AWS Certified AI Practitioner, nivel Foundational.
